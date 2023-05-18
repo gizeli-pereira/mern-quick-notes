@@ -1,10 +1,7 @@
-import React from "react";
-// import { now } from "mongoose";
 import "./NoteListItem.css"
 
-export default function NoteListItem({ n }) {
+export default function NoteListItem({ n, index }) {
   const date = new Date(n.createdAt).toLocaleDateString();
-  console.log(date)
   return (
     <div className="NotListItem">
       <div>Created on: {date}</div>

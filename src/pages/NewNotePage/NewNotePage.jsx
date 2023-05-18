@@ -1,9 +1,9 @@
-import AddNote from "../../components/NewNoteForm/NewNoteForm";
+import NewNoteForm from "../../components/NewNoteForm/NewNoteForm";
 
 export default function NewNotePage() {
     return (
         <div>
-            <AddNote />
+            <NewNoteForm />
         </div>
     );
 };

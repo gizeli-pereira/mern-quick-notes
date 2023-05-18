@@ -3,10 +3,8 @@ import "./NewNoteForm.css";
 
 export default function NewNoteForm({ addNote }) {
   const [newNote, setNewNote] = useState([{
-    text: "",
-    createdAt: ""
+    text: ""
   }]);
-  const date = Date.now()
 
   function handleAddNote(evt) {
     evt.preventDefault();
@@ -15,8 +13,7 @@ export default function NewNoteForm({ addNote }) {
       createdAt: Date.now(),
     })
     setNewNote({
-    text: "",
-    createdAt: "",
+    text: ""
     });
   }
 
