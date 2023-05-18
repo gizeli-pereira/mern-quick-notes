@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import * as usersService from '../../utilities/users-service';
+import { useNavigate } from 'react-router';
 
 export default function LoginForm({ setUser }) {
   const [credentials, setCredentials] = useState({
@@ -7,6 +8,8 @@ export default function LoginForm({ setUser }) {
     password: ''
   });
   const [error, setError] = useState('');
+
+  const navigate = useNavigate();
 
   function handleChange(evt) {
     setCredentials({ ...credentials, [evt.target.name]: evt.target.value });
@@ -23,6 +26,7 @@ export default function LoginForm({ setUser }) {
       const user = await usersService.login(credentials);
       console.log(user);
       setUser(user);
+      navigate('/notes')
     } catch {
       setError('Log In Failed - Try Again');
     }
