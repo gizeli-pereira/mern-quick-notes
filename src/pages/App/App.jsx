@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { getUser } from '../../utilities/users-service';
 import './App.css';
@@ -11,10 +12,24 @@ export default function App() {
   const [user, setUser] = useState(getUser());
   const [notes, setNote] = useState([])
   const [showNotes, setShowNotes] = useState(true)
+  
+  useEffect(() => {
+    if (user) {
+      const storedNote = localStorage.getItem(`notes_${user.id}`);
+      if (storedNote) {
+        setNote(JSON.parse(storedNote));
+      }
+    }
+  }, [user]);
 
   function addNote(note) {
-    setNote([...notes, note]);
+    const updatedNote = [...notes, note];
+    setNote(updatedNote);
+    if (user) {
+      localStorage.setItem(`notes_${user.id}`, JSON.stringify(updatedNote));
+    }
   }
+
   return (
     <main className="App">
       { user ?

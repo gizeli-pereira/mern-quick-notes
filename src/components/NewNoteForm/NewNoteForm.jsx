@@ -1,10 +1,11 @@
 import { useState } from "react";
-import "./NewNoteForm.css";
 
 export default function NewNoteForm({ addNote }) {
-  const [newNote, setNewNote] = useState([{
-    text: ""
-  }]);
+  const [newNote, setNewNote] = useState({
+    text: '',
+    createdAt: ''
+  });
+  const date = Date.now()
 
   function handleAddNote(evt) {
     evt.preventDefault();
@@ -13,24 +14,25 @@ export default function NewNoteForm({ addNote }) {
       createdAt: Date.now(),
     })
     setNewNote({
-    text: ""
-    });
+      text: '',
+      createdAt:''
+    })
   }
 
   return (
     <>
-      <form className="NewNoteForm" onSubmit={handleAddNote}>
-        <label>Note</label>
+      <form onSubmit={handleAddNote} className="NoteForm">
+        <label htmlFor="">Note</label>
         <input
-          type="text"
-          name="text"
-          placeholder="Text here"
-          value={newNote.text}
-          onChange={(evt) => setNewNote(evt.target.value)}
-          required
+        type='text'
+        name='text'
+        placeholder='note'
+        value={newNote.text}
+        onChange={(evt) => setNewNote({ ...newNote, text: evt.target.value })}
+        required
         ></input>
-        <button type="submit">ADD NOTE</button>
+        <button type='submit'>ADD NOTE</button>
       </form>
     </>
-  );
+  )
 }
